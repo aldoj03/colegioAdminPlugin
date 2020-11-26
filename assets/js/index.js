@@ -10,14 +10,11 @@ window.onload = () => {
     document.querySelector("body").append(anchor);
   }
 
-  //setear status de pedido por defecto
   if (document.querySelector("#order_status")) {
-    // console.log(document.querySelector("#order_status").value);
 
-    // displayOrderActionsButtons(statusMensaje)
     setStatusMessage();
+    createTransferenciaInputs();
   }
-//   console.log(document.querySelector("#order_status").value);
 
   //ajax para buscar por cedula dentro del pedido
   if (document.querySelector("#search_by_ci_in_order")) {
@@ -63,8 +60,6 @@ window.onload = () => {
     });
   }
 
-
-
   function setStatusMessage() {
     let message;
 
@@ -79,9 +74,9 @@ window.onload = () => {
         // document.querySelector(".co-admin-save-order").disabled = true;
         // setTimeout(() => {
         //   statusInput.value = "wc-completed";
-          console.log(statusInput.value);
+        console.log(statusInput.value);
         // }, 300);
-        setOrderStatus("wc-completed")
+        setOrderStatus("wc-completed");
 
         break;
       case "wc-processing":
@@ -90,11 +85,8 @@ window.onload = () => {
           "#order_data"
         ).innerHTML += `<div class="co-admin-status-order-mensaje ${message}">${message}</div>`;
         document.querySelector(".co-admin-save-order").style.display = "block";
-        // document.querySelector(".co-admin-save-order").disabled = true;
-        // setTimeout(() => {
-        //   statusInput.value = "wc-completed";
-        // }, 300);
-        setOrderStatus("wc-completed")
+     
+        setOrderStatus("wc-completed");
 
         break;
       case "wc-completed":
@@ -105,9 +97,8 @@ window.onload = () => {
         document.querySelector(".co-admin-edit-order").style.display = "block";
         document.querySelector(".co-admin-imprimir-order").style.display =
           "block";
-          setOrderStatus("wc-pending")
-        //   statusInput.value = "wc-processing";
-       
+        setOrderStatus("wc-pending");
+
         // console.log(statusInput.value);
         break;
 
@@ -116,7 +107,103 @@ window.onload = () => {
     }
   }
 
- function setOrderStatus(val){
-    document.querySelector("#order_status").value = val
+  function setOrderStatus(val) {
+    document.querySelector("#order_status").value = val;
+  }
+
+  if (document.querySelector(".co-admin-imprimir-order")) {
+    document
+      .querySelector(".co-admin-imprimir-order")
+      .addEventListener("click", (e) => {
+        e.preventDefault();
+        const id = e.target.dataset.id;
+        window.location.search += "&imprimir=true&imprimir_id=" + id;
+      });
+  }
+
+
+  //agrega el filtro de cedula en la lista de pedidos
+  if (document.querySelector("form#posts-filter") && window.location.href.includes('post_type=shop_order')) {
+
+    document.querySelector('.select2.select2-container.select2-container--default').style.display = 'none'
+    document.querySelector('.tablenav.top').style.display = 'flex'
+    document.querySelector("form#posts-filter .tablenav ").innerHTML += `<div>
+    <input class="select3-search__field" placeholder="buscar por cédula" type="text" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" role="combobox" id="search_by_ci_in_list" >
+    <button id="search_by_ci_in_list_button" class="button" disabled>Filtar</button></div>
+`;
+
+    let inputSelect = document.querySelector(".wc-customer-search.select2-hidden-accessible");
+
+    document
+      .querySelector("#search_by_ci_in_list")
+      .addEventListener("input", e => {
+        document.querySelector('#search_by_ci_in_list_button').disabled = true
+
+        jQuery.ajax({
+          type: "post",
+          url: wp_ajax_tets_vars.ajaxUrl,
+          data: "action=send-user-by-cedula&cedula=" + e.target.value,
+          success: function (result) {
+            if (result) {
+              console.log(result)
+              if (!inputSelect.querySelector(`option[value='${result.id}']`)) {
+                const option = document.createElement("option");
+                option.value = result.id;
+                option.innerHTML = result.name;
+                inputSelect.append(option);
+              } else {
+                inputSelect.value = "";
+              }
+              inputSelect.value = result.id;
+              document.querySelector('#search_by_ci_in_list_button').disabled = false
+            } else {
+              inputSelect.value = "";
+            }
+          },
+        });
+      });
+
+      document.querySelector('#search_by_ci_in_list_button').addEventListener('click',e=>{
+        e.preventDefault()
+        document.querySelector('#post-query-submit').click()
+      })
+
+      
   }
 };
+
+function createTransferenciaInputs() {
+  const extraInputs = `
+  <div>
+  <label for="bancp"> Banco </label>
+  <input type="text" name="banco" id="banco" class="regular-text" required /><br />
+  <label for="referencia"># Referencia </label>
+  <input type="text" name="referencia" id="referencia"  class="regular-text" required /><br />
+  </div>
+  `;
+  if (document.querySelector("#metodo-pago-transferencia")) {
+    document
+      .querySelector("#metodo-pago-transferencia")
+      .addEventListener(
+        "input",
+        () =>
+          (document.querySelector(
+            "#extra-transferencia-inputs"
+          ).innerHTML = extraInputs)
+      );
+    document
+      .querySelector("#metodo-pago-mixto")
+      .addEventListener(
+        "input",
+        () =>
+          (document.querySelector(
+            "#extra-transferencia-inputs"
+          ).innerHTML = extraInputs)
+      );
+    document
+      .querySelector("#metodo-pago-efectivo")
+      .addEventListener("input", (e) => {
+        document.querySelector("#extra-transferencia-inputs").innerHTML = "";
+      });
+  }
+}

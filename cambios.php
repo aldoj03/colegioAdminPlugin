@@ -43,7 +43,7 @@ function co_admin_cambios_history_widget_function()
 {
     $posts = get_posts(array('post_type' => 'cambios'));
 
-   
+
 
     $html = '<ul><li>Dolar------------Tasa</li>';
     foreach ($posts as $post) {
@@ -51,7 +51,7 @@ function co_admin_cambios_history_widget_function()
         $tasa = $posts_meta['tasa'][0];
         $dolar = $posts_meta['dolar'][0];
         $date = $post->post_date;
-        $html .= '<li>'.$dolar.'USD ------'.$tasa.'BS-------------'.$date.' </li>';
+        $html .= '<li>' . $dolar . 'USD ------' . $tasa . 'BS-------------' . $date . ' </li>';
     }
 
     $html .= '</ul>';

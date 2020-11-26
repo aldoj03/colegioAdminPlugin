@@ -14,86 +14,126 @@
 #postcustom,
 #woocommerce-order-downloads,
 .form-field.form-field-wide.wc-order-status,
-.form-field.form-field-wide.wc-customer-user 
-{
-    display: none;
+.form-field.form-field-wide.wc-customer-user {
+  display: none;
 }
-.order_data_column_container .order_data_column:first-child{
-    width: 80% !important;
+.order_data_column_container .order_data_column:first-child {
+  width: 80% !important;
 }
-.go_to_pedidos_btn{
-    position: fixed;
-    right:  30px;
-    bottom: 30px;
-    background: #007cba;
-    color: white;
-    border-radius: 10px;
-    font-size: 20px;
-    text-decoration: none;
-    padding: 20px 40px;
+.go_to_pedidos_btn {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  background: #007cba;
+  color: white;
+  border-radius: 10px;
+  font-size: 20px;
+  text-decoration: none;
+  padding: 20px 40px;
 }
-.co-admin-status-order-mensaje{
-
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    font-size: 19px;
-    font-weight: 500;
-    padding: 15px 25px;
-    border-radius: 12px;
-    color: white;
-
+.co-admin-status-order-mensaje {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 19px;
+  font-weight: 500;
+  padding: 15px 25px;
+  border-radius: 12px;
+  color: white;
 }
-.co-admin-status-order-mensaje.Procesando{
-    background-color: orange;
+.co-admin-status-order-mensaje.Procesando {
+  background-color: orange;
 }
 
-.co-admin-status-order-mensaje.Completado{
-    background-color: rgb(20, 160, 20);
-
+.co-admin-status-order-mensaje.Completado {
+  background-color: rgb(20, 160, 20);
 }
 
-#search_by_ci_in_order{
-    margin-top: 16px;
-    margin-bottom: 16px;
+#search_by_ci_in_order {
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
 
-.co-admin-actions-order-btns{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 30px;
+.co-admin-actions-order-btns {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
 }
-.co-admin-actions-order-btns button{
-    margin: 0 20px;
-    padding: 12px 20px;
-    border-radius: 10px;
+.co-admin-actions-order-btns button {
+  margin: 0 20px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+  border: none;
+  display: flex;
+  outline: none;
+  cursor: pointer;
+}
+
+.co-admin-actions-order-btns button:disabled {
+  opacity: 0.6;
+}
+.co-admin-actions-order-btns button span {
+  margin-left: 16px;
+}
+
+.co-admin-actions-order-btns .co-admin-save-order {
+  background: rgb(20, 160, 20);
+}
+.co-admin-actions-order-btns .co-admin-imprimir-order {
+  background: #007cba;
+}
+.co-admin-actions-order-btns .co-admin-edit-order {
+  background: orange;
+}
+
+.button.add-coupon {
+  display: none;
+}
+
+.metodo-pago-container {
+  display: flex;
+}
+
+.metodo-pago-label {
+  margin: 16px;
+  align-items: center;
+  display: flex !important;
+  flex-direction: column;
+}
+.metodo-pago-label input {
+  margin-top: 8px;
+  width: unset !important;
+}
+
+#search_by_ci_in_list_button {
+  background-color: rgb(20, 160, 20);
+  color: white;
+}
+
+#menu-posts-cambios {
+  display: none;
+}
+
+.imprimir_enlace {
+  background: orange !important;
+  color: white !important;
+}
+
+.btns__informes.button{
+    padding: 12px 25px;
     font-size: 18px;
+    margin: 15px;
+    color: white !important;
     font-weight: 500;
-    color: white;
-    border: none;
-    display: flex;
-    outline: none;
-    cursor: pointer
 }
+.btns__informes.button.ingresos{
+    background-color: rgb(20, 160, 20) !important;
 
-.co-admin-actions-order-btns button:disabled{
-    opacity: 0.6;
 }
-.co-admin-actions-order-btns button span{
+.btns__informes.button.morosos{
+  background: orange !important;
 
-    margin-left: 16px;
-}
-
-.co-admin-actions-order-btns .co-admin-save-order{
-    background: rgb(20, 160, 20);
-}
-.co-admin-actions-order-btns .co-admin-imprimir-order{
-    background: #007cba;
-}
-.co-admin-actions-order-btns .co-admin-edit-order{
-    background: orange;
-}
-
-.button.add-coupon{
-    display: none
 }
