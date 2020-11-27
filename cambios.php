@@ -45,16 +45,16 @@ function co_admin_cambios_history_widget_function()
 
 
 
-    $html = '<ul><li>Dolar------------Tasa</li>';
+    $html = '<table class="tasa_cambios_table_history"><thead><tr><td>Dolar</td><td>Tasa</td><td>Fecha</td></tr></thead><tbody>';
     foreach ($posts as $post) {
         $posts_meta = get_post_meta($post->ID);
         $tasa = $posts_meta['tasa'][0];
         $dolar = $posts_meta['dolar'][0];
         $date = $post->post_date;
-        $html .= '<li>' . $dolar . 'USD ------' . $tasa . 'BS-------------' . $date . ' </li>';
+        $html .= '<tr><td>' . $dolar . 'USD </td><td>' . $tasa . 'BS</td><td>' . $date . '</td></tr>';
     }
 
-    $html .= '</ul>';
+    $html .= '<tbody></table>';
     echo $html;
 }
 
@@ -119,8 +119,8 @@ function co_admin_cambios_widget_function()
 
             // getting all products
             $products_ids = get_posts(array(
-                'post_type'        => 'product', // or ['product','product_variation'],
-                'post_status'      => 'publish',
+                'post_type'        => 'product', 
+                'posts_per_page' => -1,
                 'fields'           => 'ids',
             ));
 
@@ -132,7 +132,6 @@ function co_admin_cambios_widget_function()
 
                 // Loop through product Ids
                 foreach ($products_ids as $product_id) {
-
                     // Get the WC_Product object
                     $product = wc_get_product($product_id);
                     $product->set_price($newPrice);

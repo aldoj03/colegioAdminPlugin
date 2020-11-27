@@ -36,7 +36,7 @@ function co_admin_enqueue()
 
     if (isset($_GET['imprimir']) && isset($_GET['imprimir_id'])) {
 
-        include 'imprimir.php';
+        include 'imprimir-factura.php';
     }
 }
 
@@ -44,8 +44,25 @@ add_action('init', 'co_admin_enqueue');
 
 
 
-
-
+//remover menu pages
+function wpdocs_remove_menus(){
+   
+    remove_menu_page( 'edit.php' );                 
+    remove_menu_page( 'upload.php' );                 
+    remove_menu_page( 'menu-appearance' );    
+    remove_menu_page( 'edit-comments.php' );          
+    remove_menu_page( 'themes.php' );               
+    remove_menu_page( 'tools.php' );                  
+    remove_menu_page( 'options-general.php' );       
+    remove_menu_page( 'wc-admin-path--analytics-overview' );        
+    remove_menu_page( 'menu-pages' );        
+    remove_menu_page( 'woocommerce-marketing' );   
+    remove_menu_page( 'menu-posts' );   
+    remove_menu_page( 'menu-posts-feedback' );   
+    remove_menu_page( 'woocommerce' );   
+     
+  }
+  add_action( 'admin_menu', 'wpdocs_remove_menus' );
 
 
 

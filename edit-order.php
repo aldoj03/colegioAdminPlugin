@@ -52,7 +52,7 @@ function co_admin_display_order_data($order)
                         <h3>Numero de Control: <?= $control ?> </h3>
                     </p>
                     <p>
-                        <h3>Name: <?= $name ?> </h3>
+                        <h3>Nombre: <?= $name ?> </h3>
                     </p>
                     <p>
                         <h3>Cedula: <?= $cedula ?> </h3>
@@ -74,7 +74,7 @@ function co_admin_display_order_data($order)
             </div>
         </div>
         <div class="co-admin-actions-order-btns">
-            <button class="co-admin-save-order" style="display:none" <?= (!isset($cedula) && !isset($hijos)) ? 'disabled' : '' ?>>Completar <span class="dashicons dashicons-yes"></span></button>
+            <button class="co-admin-save-order" style="display:none" >Completar <span class="dashicons dashicons-yes"></span></button>
             <button class="co-admin-imprimir-order" style="display:none" data-id="<?=$order->get_id()?>">Imprimir <span class="dashicons dashicons-format-aside"></span></button>
             <button class="co-admin-edit-order" style="display:none" ">Editar <span class="dashicons dashicons-edit-large"></span></button>
         </div>

@@ -123,8 +123,7 @@
 }
 
 .btns__informes.button{
-    padding: 12px 25px;
-    font-size: 18px;
+    padding: 8px 13px;
     margin: 15px;
     color: white !important;
     font-weight: 500;
@@ -136,4 +135,9 @@
 .btns__informes.button.morosos{
   background: orange !important;
 
+}
+
+.tasa_cambios_table_history{
+  width: 100%;
+  font-size: 19px;
 }

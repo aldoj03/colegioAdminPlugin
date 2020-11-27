@@ -3,7 +3,7 @@ window.onload = () => {
   if (document.querySelector("body.wp-admin")) {
     const anchor = document.createElement("a");
     anchor.href =
-      "http://localhost/wordpress/wp-admin/edit.php?post_type=shop_order";
+      "https://" + window.location.hostname + "/wp-admin/edit.php?post_type=shop_order";
     anchor.innerHTML = "Ir a Facturacion";
     anchor.classList.add("go_to_pedidos_btn");
 
@@ -29,6 +29,7 @@ window.onload = () => {
     let inputSelect = document.querySelector("#customer_user");
     inputText.addEventListener("input", (e) => {
       resutlDataContainer.innerHTML = "";
+      document.querySelector(".co-admin-save-order").disabled = true;
 
       resultContainer.querySelector(".spinner").style.visibility = "visible";
 
@@ -85,7 +86,7 @@ window.onload = () => {
           "#order_data"
         ).innerHTML += `<div class="co-admin-status-order-mensaje ${message}">${message}</div>`;
         document.querySelector(".co-admin-save-order").style.display = "block";
-     
+
         setOrderStatus("wc-completed");
 
         break;
@@ -163,12 +164,12 @@ window.onload = () => {
         });
       });
 
-      document.querySelector('#search_by_ci_in_list_button').addEventListener('click',e=>{
-        e.preventDefault()
-        document.querySelector('#post-query-submit').click()
-      })
+    document.querySelector('#search_by_ci_in_list_button').addEventListener('click', e => {
+      e.preventDefault()
+      document.querySelector('#post-query-submit').click()
+    })
 
-      
+
   }
 };
 
@@ -206,4 +207,22 @@ function createTransferenciaInputs() {
         document.querySelector("#extra-transferencia-inputs").innerHTML = "";
       });
   }
+
+
+  if (document.querySelector('.button.add-order-item')) {
+    console.log('if')
+    document.querySelector('.button.add-order-item').addEventListener('click', () => {
+      console.log('click')
+    setTimeout(() => {
+      
+      document.querySelector('.modal-close.modal-close-link.dashicons.dashicons-no-alt').addEventListener('click', () => {
+        console.log('remove')
+
+        document.querySelector('#wc-backbone-modal-dialog').remove()
+        document.querySelector('body').style.overflow = 'auto'
+    }, 500);
+      })
+    })
+  }
+
 }
